@@ -1,5 +1,5 @@
 {
-  "name": "ohmybrew/basic-shopify-api",
+  "name": "seka19/basic-shopify-api",
   "type": "library",
   "description": "A basic Shopify API wrapper with REST and GraphQL support.",
   "keywords": ["api", "shopify", "rest", "graphql"],

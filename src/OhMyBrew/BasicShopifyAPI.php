@@ -749,7 +749,7 @@ class BasicShopifyAPI implements LoggerAwareInterface
             $status = $resp->getStatusCode();
 
             $this->updateRestCallLimits($resp);
-            $this->log("[{$uri}:{$type}] {$status}: ".json_encode($body));
+            $this->log("[{$uri}:{$type}] {$status}: ".(string)$body);
 
             // Check for "Link" header
             $link = null;

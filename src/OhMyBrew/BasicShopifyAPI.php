@@ -537,6 +537,12 @@ class BasicShopifyAPI implements LoggerAwareInterface
             ksort($params);
 
             // Encode and hash the params (without HMAC), add the API secret, and compare to the HMAC from params
+            $params = array_map(
+                function ($value) {
+                    return is_bool($value) ? ($value ? 'true' : 'false') : $value;
+                },
+                $params
+            );
             return $hmac === hash_hmac('sha256', urldecode(http_build_query($params)), $this->apiSecret);
         }
 

@@ -996,7 +996,7 @@ class BasicShopifyAPI implements LoggerAwareInterface
      */
     protected function isAuthableRequest(string $uri)
     {
-        return preg_match('/\/admin\/oauth\/(authorize|access_token|access_scopes)/', $uri) === 0;
+        return preg_match('/\/admin\/oauth\/(authorize|access_token)/', $uri) === 0;
     }
 
     /**
@@ -1010,6 +1010,11 @@ class BasicShopifyAPI implements LoggerAwareInterface
     {
         if ($this->version === null || preg_match(self::VERSION_PATTERN, $uri) || !$this->isAuthableRequest($uri)) {
             // No version set, or already versioned... nothing to do
+            return $uri;
+        }
+
+        if (preg_match('/\/admin\/oauth\/access_scopes/', $uri)) {
+            // This request is also doesn't have to contain version
             return $uri;
         }
 
